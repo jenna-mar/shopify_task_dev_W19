@@ -15,8 +15,8 @@ The solution fulfils all listed requirements of the [Shopify - Winter 2019 - Bac
 
   * API implemented in [GraphQL](https://graphql.org/) (rather than REST)
   * Full [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) operations supported across all models 
-  * Core functionality [tested in RSpec](spec/)
-  * Database (PostgreSQL btw) [seeded with meaningful data](db/seeds.rb)
+  * Core functionality [tested in RSpec](https://github.com/jenna-mar/shopify_task_dev_W19/tree/master/shopify-task-api/spec)
+  * Database (PostgreSQL btw) [seeded with meaningful data](https://github.com/jenna-mar/shopify_task_dev_W19/blob/master/shopify-task-api/db/seeds.rb)
   * Can be containerized locally with `docker-compose build` and `docker-compose up`
 
 ### Usage
