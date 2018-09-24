@@ -2,7 +2,7 @@
 
 ### Description
 
-This project implements a Web API (documented [here](public/docs/index.html)) to model the following relationships:
+This project implements a Web API (documented [here](https://github.com/jenna-mar/shopify_task_dev_W19/blob/master/shopify-task-api/public/docs/index.html)) to model the following relationships:
 
 1. Shops have many Products 
 2. Shops have many Orders
@@ -21,7 +21,7 @@ The solution fulfils all listed requirements of the [Shopify - Winter 2019 - Bac
 
 ### Usage
 
-Our GraphQL API is [documented in full](public/docs/index.html) and can be accessed on a local server at /docs (for example, http://localhost:3000/docs).
+Our GraphQL API is [documented in full](https://github.com/jenna-mar/shopify_task_dev_W19/blob/master/shopify-task-api/public/docs/index.html) and can be accessed on a local server at /docs (for example, http://localhost:3000/docs).
 The API can be accessed locally at /graphql (for example, http://localhost:3000/graphql).
 
 In example, one might retrieve the data model for a given customer, from the command-line (via `curl`) with the following GraphQL request:
