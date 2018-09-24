@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Mutation GraphQL documentation">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Mutation</title>
+    <link rel="stylesheet" href="/docs/assets/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>
+
+    // Add anchors on DOMContentLoaded
+    document.addEventListener("DOMContentLoaded", function(event) {
+      anchors.options = {
+        placement: 'left',
+        visible: 'hover',
+        icon: '¶'
+      };
+      anchors.add('h2, h3, h4, h5, h6, .anchored');
+    });
+
+    </script>
+  </head>
+  <body>
+
+    <div id="wrap">
+      <div id="header">
+      </div>
+      <div id="sidebar">
+        <ul class="categories">
+  <li>
+    <ul class="menu-root">
+      <li>
+        <a href="/docs">GraphQL Reference</a>
+    </ul>
+  </li>
+
+  <li>
+    <p>Queries</p>
+    <ul class="menu-root">
+      <li>
+        <a href="/docs/operation/query/" class="sidebar-link">
+          Query
+        </a>
+      </li>
+      <li>
+        <a href="/docs/operation/mutation/" class="sidebar-link">
+          Mutation
+        </a>
+      </li>
+    </ul>
+  </li>
+
+  <li>
+    <p><a href="/docs/object">Objects</a></p>
+    <ul class="menu-root">
+      
+        
+      <li>
+        <a href="/docs/object/lineitem/" class="sidebar-link">
+          LineItem
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/docs/object/mutation/" class="sidebar-link">
+          Mutation
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/docs/object/order/" class="sidebar-link">
+          Order
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/docs/object/product/" class="sidebar-link">
+          Product
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/docs/object/query/" class="sidebar-link">
+          Query
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/docs/object/shop/" class="sidebar-link">
+          Shop
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/docs/object/__directive/" class="sidebar-link">
+          __Directive
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/docs/object/__enumvalue/" class="sidebar-link">
+          __EnumValue
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/docs/object/__field/" class="sidebar-link">
+          __Field
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/docs/object/__inputvalue/" class="sidebar-link">
+          __InputValue
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/docs/object/__schema/" class="sidebar-link">
+          __Schema
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/docs/object/__type/" class="sidebar-link">
+          __Type
+        </a>
+      </li>
+      
+    </ul>
+  </li>
+
+  <li>
+    <p><a href="/docs/operation/mutation">Mutations</a></p>
+    <ul class="menu-root">
+      
+    </ul>
+  </li>
+
+  <li>
+    <p><a href="/docs/interface">Interfaces</a></p>
+    <ul class="menu-root">
+      
+    </ul>
+  </li>
+
+  <li>
+    <p><a href="/docs/enum">Enums</a></p>
+    <ul class="menu-root">
+      
+      
+      <li>
+        <a href="/docs/enum/__directivelocation/" class="sidebar-link">
+          __DirectiveLocation
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/docs/enum/__typekind/" class="sidebar-link">
+          __TypeKind
+        </a>
+      </li>
+      
+    </ul>
+  </li>
+
+  <li>
+    <p><a href="/docs/union">Unions</a></p>
+    <ul class="menu-root">
+      
+    </ul>
+  </li>
+
+  <li>
+    <p><a href="/docs/input_object">Input Objects</a></p>
+    <ul class="menu-root">
+      
+    </ul>
+  </li>
+
+  <li>
+    <p><a href="/docs/scalar">Scalars</a></p>
+    <ul class="menu-root">
+      
+      
+      <li>
+        <a href="/docs/scalar/boolean/" class="sidebar-link">
+          Boolean
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/docs/scalar/float/" class="sidebar-link">
+          Float
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/docs/scalar/id/" class="sidebar-link">
+          ID
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/docs/scalar/int/" class="sidebar-link">
+          Int
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/docs/scalar/string/" class="sidebar-link">
+          String
+        </a>
+      </li>
+      
+    </ul>
+  </li>
+</ul>
+
+      </div>
+      <div id="content">
+
+        <h1>
+<a id="mutation" class="anchor" href="#mutation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Mutation</h1>
+<p>Available root mutations</p>
+<h2>
+<a id="fields" class="anchor" href="#fields" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Fields</h2>
+<div class="field-entry ">
+  <span id="createshop" class="field-name anchored">createShop (<code><a href="/docs/object/shop">Shop!</a></code>)</span>
+  <div class="description-wrapper">
+  <p>Create a new shop</p>
+   <table class="arguments">
+  <thead>
+  <tr>
+    <th>Argument</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td><code class="anchored">name</code></td>
+  <td>
+    <code><a href="/docs/scalar/string">String!</a></code>
+  </td>
+  <td>
+   </td>
+  </tr>
+  </tbody>
+</table>
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="editshop" class="field-name anchored">editShop (<code><a href="/docs/object/shop">Shop!</a></code>)</span>
+  <div class="description-wrapper">
+  <p>Update a shop's name</p>
+   <table class="arguments">
+  <thead>
+  <tr>
+    <th>Argument</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td><code class="anchored">id</code></td>
+  <td>
+    <code><a href="/docs/scalar/id">ID!</a></code>
+  </td>
+  <td>
+    <p>The ID of the shop to be edited</p>
+   </td>
+  </tr>
+  <tr>
+  <td><code class="anchored">name</code></td>
+  <td>
+    <code><a href="/docs/scalar/string">String!</a></code>
+  </td>
+  <td>
+    <p>The new name of the shop</p>
+   </td>
+  </tr>
+  </tbody>
+</table>
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="deleteshop" class="field-name anchored">deleteShop (<code><a href="/docs/object/shop">Shop!</a></code>)</span>
+  <div class="description-wrapper">
+  <p>Delete a shop. Warning: this will delete all of a shop's products and orders too!</p>
+   <table class="arguments">
+  <thead>
+  <tr>
+    <th>Argument</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td><code class="anchored">id</code></td>
+  <td>
+    <code><a href="/docs/scalar/id">ID!</a></code>
+  </td>
+  <td>
+    <p>The ID of the shop to be deleted</p>
+   </td>
+  </tr>
+  </tbody>
+</table>
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="createproduct" class="field-name anchored">createProduct (<code><a href="/docs/object/product">Product!</a></code>)</span>
+  <div class="description-wrapper">
+  <p>Create a new product.</p>
+   <table class="arguments">
+  <thead>
+  <tr>
+    <th>Argument</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td><code class="anchored">title</code></td>
+  <td>
+    <code><a href="/docs/scalar/string">String!</a></code>
+  </td>
+  <td>
+    <p>The product's name.</p>
+   </td>
+  </tr>
+  <tr>
+  <td><code class="anchored">description</code></td>
+  <td>
+    <code><a href="/docs/scalar/string">String</a></code>
+  </td>
+  <td>
+    <p>A description of the product.</p>
+   </td>
+  </tr>
+  <tr>
+  <td><code class="anchored">price</code></td>
+  <td>
+    <code><a href="/docs/scalar/float">Float!</a></code>
+  </td>
+  <td>
+    <p>The price in dollars of the product.</p>
+   </td>
+  </tr>
+  <tr>
+  <td><code class="anchored">category</code></td>
+  <td>
+    <code><a href="/docs/scalar/string">String</a></code>
+  </td>
+  <td>
+    <p>The category of the product.</p>
+   </td>
+  </tr>
+  <tr>
+  <td><code class="anchored">shopId</code></td>
+  <td>
+    <code><a href="/docs/scalar/id">ID!</a></code>
+  </td>
+  <td>
+    <p>The ID of the shop that the product belongs to.</p>
+   </td>
+  </tr>
+  </tbody>
+</table>
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="editproduct" class="field-name anchored">editProduct (<code><a href="/docs/object/product">Product!</a></code>)</span>
+  <div class="description-wrapper">
+  <p>Update a product.</p>
+   <table class="arguments">
+  <thead>
+  <tr>
+    <th>Argument</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td><code class="anchored">id</code></td>
+  <td>
+    <code><a href="/docs/scalar/id">ID!</a></code>
+  </td>
+  <td>
+    <p>The ID of the product to be edited.</p>
+   </td>
+  </tr>
+  <tr>
+  <td><code class="anchored">title</code></td>
+  <td>
+    <code><a href="/docs/scalar/string">String</a></code>
+  </td>
+  <td>
+    <p>The new name of the product.</p>
+   </td>
+  </tr>
+  <tr>
+  <td><code class="anchored">description</code></td>
+  <td>
+    <code><a href="/docs/scalar/string">String</a></code>
+  </td>
+  <td>
+    <p>The new description of the product.</p>
+   </td>
+  </tr>
+  <tr>
+  <td><code class="anchored">price</code></td>
+  <td>
+    <code><a href="/docs/scalar/float">Float</a></code>
+  </td>
+  <td>
+    <p>The new price of the product.</p>
+   </td>
+  </tr>
+  <tr>
+  <td><code class="anchored">category</code></td>
+  <td>
+    <code><a href="/docs/scalar/string">String</a></code>
+  </td>
+  <td>
+    <p>The new category of the product.</p>
+   </td>
+  </tr>
+  <tr>
+  <td><code class="anchored">shopId</code></td>
+  <td>
+    <code><a href="/docs/scalar/id">ID</a></code>
+  </td>
+  <td>
+    <p>The product's new shop.</p>
+   </td>
+  </tr>
+  </tbody>
+</table>
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="deleteproduct" class="field-name anchored">deleteProduct (<code><a href="/docs/object/product">Product!</a></code>)</span>
+  <div class="description-wrapper">
+  <p>Delete a product. Warning: this will delete all of a product's line items too!</p>
+   <table class="arguments">
+  <thead>
+  <tr>
+    <th>Argument</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td><code class="anchored">id</code></td>
+  <td>
+    <code><a href="/docs/scalar/id">ID!</a></code>
+  </td>
+  <td>
+    <p>The ID of the product to be deleted</p>
+   </td>
+  </tr>
+  </tbody>
+</table>
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="createorder" class="field-name anchored">createOrder (<code><a href="/docs/object/order">Order!</a></code>)</span>
+  <div class="description-wrapper">
+  <p>Create a new order.</p>
+   <table class="arguments">
+  <thead>
+  <tr>
+    <th>Argument</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td><code class="anchored">shopId</code></td>
+  <td>
+    <code><a href="/docs/scalar/id">ID!</a></code>
+  </td>
+  <td>
+    <p>The ID of the shop that the order is from.</p>
+   </td>
+  </tr>
+  </tbody>
+</table>
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="editorder" class="field-name anchored">editOrder (<code><a href="/docs/object/order">Order!</a></code>)</span>
+  <div class="description-wrapper">
+  <p>Edit an order.</p>
+   <table class="arguments">
+  <thead>
+  <tr>
+    <th>Argument</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td><code class="anchored">id</code></td>
+  <td>
+    <code><a href="/docs/scalar/id">ID!</a></code>
+  </td>
+  <td>
+    <p>The ID of the order to be edited.</p>
+   </td>
+  </tr>
+  <tr>
+  <td><code class="anchored">totalPrice</code></td>
+  <td>
+    <code><a href="/docs/scalar/float">Float</a></code>
+  </td>
+  <td>
+    <p>The total price in dollars of the order.</p>
+   </td>
+  </tr>
+  <tr>
+  <td><code class="anchored">shopId</code></td>
+  <td>
+    <code><a href="/docs/scalar/id">ID</a></code>
+  </td>
+  <td>
+    <p>The ID of the shop that the order is from.</p>
+   </td>
+  </tr>
+  </tbody>
+</table>
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="deleteorder" class="field-name anchored">deleteOrder (<code><a href="/docs/object/order">Order!</a></code>)</span>
+  <div class="description-wrapper">
+  <p>Delete an order. Warning: this will delete all of the order's line items.</p>
+   <table class="arguments">
+  <thead>
+  <tr>
+    <th>Argument</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td><code class="anchored">id</code></td>
+  <td>
+    <code><a href="/docs/scalar/id">ID!</a></code>
+  </td>
+  <td>
+    <p>The ID of the order to be deleted.</p>
+   </td>
+  </tr>
+  </tbody>
+</table>
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="createlineitem" class="field-name anchored">createLineItem (<code><a href="/docs/object/lineitem">LineItem!</a></code>)</span>
+  <div class="description-wrapper">
+  <p>Create a new line item. Creating a new line item will also add its total cost to its order.
+The order and product IDs given must be from the same shop.</p>
+   <table class="arguments">
+  <thead>
+  <tr>
+    <th>Argument</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td><code class="anchored">quantity</code></td>
+  <td>
+    <code><a href="/docs/scalar/int">Int!</a></code>
+  </td>
+  <td>
+    <p>The quantity of the item purchased in the order.</p>
+   </td>
+  </tr>
+  <tr>
+  <td><code class="anchored">orderId</code></td>
+  <td>
+    <code><a href="/docs/scalar/id">ID!</a></code>
+  </td>
+  <td>
+    <p>The ID of the order that the line item is part of.</p>
+   </td>
+  </tr>
+  <tr>
+  <td><code class="anchored">productId</code></td>
+  <td>
+    <code><a href="/docs/scalar/id">ID!</a></code>
+  </td>
+  <td>
+    <p>The ID of the product that the line item represents.</p>
+   </td>
+  </tr>
+  </tbody>
+</table>
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="editlineitem" class="field-name anchored">editLineItem (<code><a href="/docs/object/lineitem">LineItem!</a></code>)</span>
+  <div class="description-wrapper">
+  <p>Edit a line item. If the line item is a given a new product ID,
+the title and price will be updated to match. Otherwise, the provided title and price will take precedence,
+but the product ID will still be updated if present. The order total will also be adjusted to reflect changes in price, if applicable.
+The order and product IDs must be from the same shop.</p>
+   <table class="arguments">
+  <thead>
+  <tr>
+    <th>Argument</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td><code class="anchored">id</code></td>
+  <td>
+    <code><a href="/docs/scalar/id">ID!</a></code>
+  </td>
+  <td>
+    <p>The ID of the line item to be edited.</p>
+   </td>
+  </tr>
+  <tr>
+  <td><code class="anchored">title</code></td>
+  <td>
+    <code><a href="/docs/scalar/string">String</a></code>
+  </td>
+  <td>
+    <p>The new title name of the line item.</p>
+   </td>
+  </tr>
+  <tr>
+  <td><code class="anchored">quantity</code></td>
+  <td>
+    <code><a href="/docs/scalar/int">Int</a></code>
+  </td>
+  <td>
+    <p>The new quantity of the line item.</p>
+   </td>
+  </tr>
+  <tr>
+  <td><code class="anchored">price</code></td>
+  <td>
+    <code><a href="/docs/scalar/float">Float</a></code>
+  </td>
+  <td>
+    <p>The new price of the line item.</p>
+   </td>
+  </tr>
+  <tr>
+  <td><code class="anchored">orderId</code></td>
+  <td>
+    <code><a href="/docs/scalar/id">ID</a></code>
+  </td>
+  <td>
+    <p>The new order that the line item is part of.</p>
+   </td>
+  </tr>
+  <tr>
+  <td><code class="anchored">productId</code></td>
+  <td>
+    <code><a href="/docs/scalar/id">ID</a></code>
+  </td>
+  <td>
+    <p>The new product that the line item represents.</p>
+   </td>
+  </tr>
+  </tbody>
+</table>
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="deletelineitem" class="field-name anchored">deleteLineItem (<code><a href="/docs/object/lineitem">LineItem!</a></code>)</span>
+  <div class="description-wrapper">
+  <p>Delete a line item. The value of the line item will be removed from its order (total price) upon deletion.</p>
+   <table class="arguments">
+  <thead>
+  <tr>
+    <th>Argument</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td><code class="anchored">id</code></td>
+  <td>
+    <code><a href="/docs/scalar/id">ID!</a></code>
+  </td>
+  <td>
+    <p>The ID of the line item to be deleted.</p>
+   </td>
+  </tr>
+  </tbody>
+</table>
+  </div>
+</div>
+
+      </div>
+
+      <!-- mobile only -->
+      <div id="mobile-header">
+        <a class="menu-button"></a>
+        <a class="logo" href="/docs">
+
+        </a>
+      </div>
+      <div id="mobile-shade"></div>
+
+    </div>
+
+  </body>
+</html>

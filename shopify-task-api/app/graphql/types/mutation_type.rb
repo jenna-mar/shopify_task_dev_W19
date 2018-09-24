@@ -1,6 +1,6 @@
 module Types
   class MutationType < Types::BaseObject
-    description "Mutation root"
+    description "Available root mutations"
 
     #mutations for shop create/update/destroy operations
     field :create_shop, ShopType, null: false do
