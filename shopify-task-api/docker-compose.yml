@@ -7,14 +7,24 @@ services:
       POSTGRES_PASSWORD: 
       POSTGRES_DB: db
       PGDATA: /tmp
+    ports: 
+      - "3306:3306"
     volumes:
-      - ./tmp/db:/var/lib/postgresql/data
+      - db-data/var/lib/postgresql/data
   web:
     build: .
-    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    environment:
+      SECRET_KEY_BASE: "${KEY}"
+    command: bundle exec rails s -b '0.0.0.0'
     volumes:
       - .:/shopify_task_api
+      - bundle:/bundle
     ports:
       - "3000:3000"
     depends_on:
       - db
+volumes:
+  db-data:
+    driver: local
+  bundle:
+    driver: local

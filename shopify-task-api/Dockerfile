@@ -1,27 +1,41 @@
-# Use an official Ruby image as a base
-FROM ruby:2.3.3-slim
- 
-# Install essential Linux packages
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev postgresql-client
- 
-RUN mkdir /shopify_task_api
+# ./Dockerfile
 
-WORKDIR /shopify_task_api
+FROM phusion/passenger-ruby23
 
-# Use the Gemfiles as Docker cache markers. Always bundle before copying app src.
-COPY Gemfile /shopify_task_api/Gemfile
- 
-COPY Gemfile.lock /shopify_task_api/Gemfile.lock
- 
-# Prevent bundler warnings; ensure that the bundler version executed is >= that which created Gemfile.lock
+# set some rails env vars
+ENV RAILS_ENV production
+ENV BUNDLE_PATH /bundle
+
+# set the app directory var
+ENV APP_HOME /home/app
+ENV BUNDLE_PATH /bundle
+
+RUN apt-get update -qq
+
+# Install apt dependencies
+RUN apt-get install -y --no-install-recommends \
+  build-essential \
+  curl libssl-dev \
+  git \
+  unzip \
+  zlib1g-dev \
+  libxslt-dev
+
+# install bundler
 RUN gem install bundler
- 
-# Finish establishing our Ruby enviornment
+
+# Separate task from `add . .` as it will be
+# Skipped if gemfile.lock hasn't changed *
+COPY Gemfile* ./
+
+# Install gems to /bundle
 RUN bundle install
- 
-# Copy the Rails application into place
-COPY . /shopify_task_api
+
+ADD . .
+
+# compile assets!
+RUN bundle exec rake assets:precompile
 
 EXPOSE 3000
 
-CMD bundle exec rails server -b 0.0.0.0
+CMD ["/sbin/my_init"]
